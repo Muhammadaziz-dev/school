@@ -31,7 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin', 
     'django.contrib.admin',
+     # for new template of admin panel
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -39,10 +41,25 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # created apps
     'users',
-    # installed
+    'library',
+    'blog',
+    "comments",
+    # installed apps
     'rest_framework',
-
 ]
+
+JAZZMIN_SETTINGS = {
+    "site_title": "29-Maktab",
+    "site_header": "29-Maktab | Admin Panel",
+    "site_footer": "Your Admin Panel",
+    "welcome_sign": "29-Maktab | Admin Panel",
+}
+
+JAZZMIN_UI_TWEAKS = {
+ 
+    # "theme": "slate",
+    # "dark_mode_theme": "cosmo",
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -120,7 +137,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'uz'
 
 TIME_ZONE = 'UTC'
 
@@ -131,14 +149,17 @@ USE_TZ = True
 AUTH_USER_MODEL = "users.CustomUser"
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = "media-files"
+MEDIA_ROOT = BASE_DIR / "media"
 
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+# STATICFILES_DIRS = [str(BASE_DIR.joinpath("static"))]
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
