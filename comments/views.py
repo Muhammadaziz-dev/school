@@ -4,7 +4,7 @@ from .models import Comment
 from .serializers import CommentsListSerializer, CommentsDetailSerializer
 # Create your views here.
 
-class CommentsListAPIView(generics.ListAPIView):
+class CommentsListAPIView(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentsListSerializer
 

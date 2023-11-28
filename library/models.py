@@ -7,7 +7,7 @@ class Category(models.Model):
         return self.category_name
 # Create your models here.
 class Book(models.Model):
-    name = models.CharField(blank=False, max_length=255)
+    name = models.CharField(blank=False, max_length=255, default="")
     author = models.CharField(blank=False, max_length=255)
     isbn = models.CharField(max_length=13)
     description = models.TextField(default="", blank=False)
