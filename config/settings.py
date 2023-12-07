@@ -44,8 +44,10 @@ INSTALLED_APPS = [
     'library',
     'blog',
     "comments",
+
     # installed apps
     'rest_framework',
+    "ckeditor",
 ]
 
 JAZZMIN_SETTINGS = {

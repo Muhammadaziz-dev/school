@@ -1,10 +1,10 @@
 from django.db import models
 from django.utils.text import slugify
-
+from django_ckeditor.models import SceditorTextField
 # Create your models here.
 class Blog(models.Model):
     title = models.CharField(max_length=255)
-    content = models.TextField()
+    content = SceditorTextField()
     slug = models.SlugField(blank=True, unique=True)  # Slug maydonini o'zgartirdik
     video = models.FileField(upload_to="blogs/videos/", default="")
     image = models.ImageField(upload_to="blogs/images/", blank=False, default="")

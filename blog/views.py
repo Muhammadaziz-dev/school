@@ -5,16 +5,26 @@ from .models import Blog
 from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
+from comments.models import Comment
+from comments.serializers import CommentsDetailSerializer
 
-class BlogListAPIView(generics.ListCreateAPIView):
+
+class BlogListAPIView(generics.ListAPIView):
     queryset = Blog.objects.all()
     serializer_class = BlogListSerializer
 
-class BlogDetailAPIView(APIView):
-    def get_object(self, slug):
-        return get_object_or_404(Blog, slug=slug)
+class BlogDetailAPIView(generics.RetrieveAPIView):
+    queryset = Blog.objects.all()
+    serializer_class = BlogDetailSerializer
+    lookup_field = 'slug'  # Qo'shilgan qismi
 
-    def get(self, request, slug, format=None):
-        blog = self.get_object(slug)
-        serializer = BlogDetailSerializer(blog)
-        return Response(serializer.data)
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        comments = Comment.objects.filter(blog__id=instance.id)
+        comment_serializer = CommentsDetailSerializer(comments, many=True)
+        data = serializer.data
+        data['comments'] = comment_serializer.data
+        return Response(data)
+
+
