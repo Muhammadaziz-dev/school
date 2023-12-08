@@ -46,10 +46,14 @@ INSTALLED_APPS = [
     "comments",
 
     # installed apps
+
+
     "django_ckeditor_5",
     'rest_framework',
 
 ]
+
+
 
 JAZZMIN_SETTINGS = {
     "site_title": "29-Maktab",

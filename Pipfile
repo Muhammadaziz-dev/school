@@ -13,6 +13,8 @@ typing-extensions = "==4.8.0"
 pillow = "*"
 django-jazzmin = "*"
 django-ckeditor-5 = "*"
+django-rest-swagger = "*"
+drf-yasg = "*"
 
 [dev-packages]
 
