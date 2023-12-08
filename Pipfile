@@ -12,7 +12,7 @@ sqlparse = "==0.4.4"
 typing-extensions = "==4.8.0"
 pillow = "*"
 django-jazzmin = "*"
-django-ckeditor = "*"
+django-ckeditor-5 = "*"
 
 [dev-packages]
 

@@ -7,11 +7,16 @@ from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from comments.models import Comment
 from comments.serializers import CommentsDetailSerializer
+from rest_framework.pagination import PageNumberPagination
 
+
+class BlogPagination(PageNumberPagination):
+    page_size = 5
 
 class BlogListAPIView(generics.ListAPIView):
     queryset = Blog.objects.all()
     serializer_class = BlogListSerializer
+    pagination_class = BlogPagination
 
 class BlogDetailAPIView(generics.RetrieveAPIView):
     queryset = Blog.objects.all()
