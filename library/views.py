@@ -3,27 +3,34 @@ from rest_framework import generics
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
-
+from comments.models import Comment
+from comments.serializers import CommentsDetailSerializer
+from rest_framework.pagination import PageNumberPagination
 from .models import Book
 from .serializers import BookSerializer, BookDetailSerializer
 
+class BookPagination(PageNumberPagination):
+    page_size = 5
 
-class BookListAPIView(generics.ListCreateAPIView):
+class BookListAPIView(generics.ListAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
+    pagination_class = BookPagination
 
 # class BookDetailAPIView(generics.RetrieveAPIView):
 #     queryset = Book.objects.all()
 #     serializer_class = BookDetailSerializer
 
-class BookDetailAPIView(APIView):
-    def get_object(self, slug):
-        return get_object_or_404(Book, slug=slug)
+class BookDetailAPIView(generics.RetrieveAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookDetailSerializer
+    lookup_field = "slug"
 
-    def get(self, request, slug, format=None):
-        book = self.get_object(slug)
-        serializer = BookDetailSerializer(book)
-        return Response(serializer.data)
-    #
-    # queryset = Book.objects.all()
-    # serializer_class = BookDetailSerializer
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        comments = Comment.objects.filter(book__id=instance.id)
+        comment_serializer = CommentsDetailSerializer(comments, many=True)
+        data = serializer.data
+        data['comments'] = comment_serializer.data
+        return Response(data)
