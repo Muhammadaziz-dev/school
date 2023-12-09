@@ -12,18 +12,12 @@ services:
       - db
     environment:
       - DJANGO_SETTINGS_MODULE=config.settings
-      - POSTGRES_DB=school29
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=root
 
   db:
     image: postgres:13
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=school29
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=root
+     
 
   nginx:
     image: nginx:latest

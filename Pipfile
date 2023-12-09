@@ -18,6 +18,9 @@ django-rest-swagger = "*"
 drf-yasg = "*"
 gunicorn = "*"
 whitenoise = "*"
+django-cors-headers = "*"
+python-dotenv = "*"
+environs = {extras = ["django"], version = "*"}
 
 [dev-packages]
 

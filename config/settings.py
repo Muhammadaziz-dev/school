@@ -1,18 +1,20 @@
 import os
 from pathlib import Path
+from environs import Env
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+env = Env()
+env.read_env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-qz1lcoo5@(6bvc5od)rwe=2@h0$x6ze(z^e(1%@d_+)xw*mppp'
+SECRET_KEY = env.str("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool("DEBUG", default=False)
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'api.29maktab.uz']
 
@@ -36,7 +38,7 @@ INSTALLED_APPS = [
     # installed apps
     "django_ckeditor_5",
     'rest_framework',
-
+    'corsheaders',
 ]
 
 
@@ -49,7 +51,6 @@ JAZZMIN_SETTINGS = {
 }
 
 JAZZMIN_UI_TWEAKS = {
- 
     # "theme": "slate",
     # "dark_mode_theme": "cosmo",
 }
@@ -57,6 +58,7 @@ JAZZMIN_UI_TWEAKS = {
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -64,6 +66,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "https://29maktab.uz",
+    "http://localhost:3000",
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -98,29 +105,29 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # }
 
 # Local Data Base
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'school29',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#         'USER': 'postgres',
-#         'PASSWORD': "root",
-#     }
-# }
-
-
-# Docker Data Base
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'school29',
-        'HOST': 'db',
-        'PORT': '5432',
-        'USER': 'postgres',
-        'PASSWORD': "root",
+        'NAME': env("POSTGRES_DB"),
+        'HOST': env('POSTGRES_HOST'),
+        'PORT': env("POSTGRES_PORT"),
+        'USER': env('POSTGRES_USER'),
+        'PASSWORD': env('POSTGRES_PASSWORD'),
     }
 }
+
+
+# Docker Data Base
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         NAME': env("POSTGRES_DB"),
+#         'HOST': env('POSTGRES_HOST'),
+#         'PORT': env("POSTGRES_PORT"),
+#         'USER': env('POSTGRES_USER'),
+#         'PASSWORD': env('POSTGRES_PASSWORD'),
+#     }
+# }
 
 
 
@@ -165,7 +172,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
