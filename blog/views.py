@@ -11,7 +11,7 @@ from rest_framework.pagination import PageNumberPagination
 
 
 class BlogPagination(PageNumberPagination):
-    page_size = 5
+    page_size = 20
 
 class BlogListAPIView(generics.ListAPIView):
     queryset = Blog.objects.all()

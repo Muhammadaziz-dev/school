@@ -16,7 +16,7 @@ SECRET_KEY = env.str("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG", default=False)
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'api.29maktab.uz']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'api.olmazor-edu.uz']
 
 
 # Application definition
@@ -94,17 +94,21 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# Local Data Base
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': env("POSTGRES_DB"),
+#         'HOST': 'localhost',
+#         'PORT': env("POSTGRES_PORT"),
+#         'USER': env('POSTGRES_USER'),
+#         'PASSWORD': env('POSTGRES_PASSWORD'),
 #     }
 # }
 
-# Local Data Base
+
+# Docker Data Base
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -115,19 +119,6 @@ DATABASES = {
         'PASSWORD': env('POSTGRES_PASSWORD'),
     }
 }
-
-
-# Docker Data Base
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         NAME': env("POSTGRES_DB"),
-#         'HOST': env('POSTGRES_HOST'),
-#         'PORT': env("POSTGRES_PORT"),
-#         'USER': env('POSTGRES_USER'),
-#         'PASSWORD': env('POSTGRES_PASSWORD'),
-#     }
-# }
 
 
 

@@ -10,7 +10,7 @@ from .models import Book
 from .serializers import BookSerializer, BookDetailSerializer
 
 class BookPagination(PageNumberPagination):
-    page_size = 5
+    page_size = 20
 
 class BookListAPIView(generics.ListAPIView):
     queryset = Book.objects.all()

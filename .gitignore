@@ -1,7 +1,15 @@
-.idea/
-media/
+# varibles
 .env
-Pipfile
+
+# virtual env folder
+venv
+env
 Pipfile.lock
+
+# code editor settings
+.idea/
+
+# for app
+media/
 db.sqlite3
 staticfiles/
