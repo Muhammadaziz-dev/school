@@ -1,4 +1,5 @@
 from django.db import models
+from django.template.defaultfilters import default
 from django.utils.text import slugify
 
 class Category(models.Model):
@@ -13,6 +14,9 @@ class Book(models.Model):
     description = models.TextField(default="", blank=False)
     category = models.ForeignKey(Category, blank=False, on_delete=models.CASCADE)
     slug = models.SlugField(blank=True, unique=True)  # Slug maydonini o'zgartirdik
+    cover_image = models.ImageField(upload_to="library/cover_images/", default="")
+    book_file = models.FileField(upload_to="library/book_files", default="")
+
 
     def save(self, *args, **kwargs):
         # Agar slug bo'sh bo'lsa, avtomatik yaratamiz

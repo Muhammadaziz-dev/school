@@ -8,14 +8,22 @@ asgiref = "==3.7.2"
 django = "==4.2.7"
 django-jazzmin = "==2.6.0"
 djangorestframework = "==3.14.0"
-pillow = "==10.1.0"
+pillow = "*"
 psycopg2-binary = "==2.9.9"
 pytz = "==2023.3.post1"
 sqlparse = "==0.4.4"
 typing-extensions = "==4.8.0"
-tzdata = "==2023.3"
+django-ckeditor-5 = "*"
+django-rest-swagger = "*"
+drf-yasg = "*"
+gunicorn = "*"
+whitenoise = "*"
+django-cors-headers = "*"
+python-dotenv = "*"
+environs = {extras = ["django"], version = "*"}
+django-environ = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.11"
+python_version = "3.10"
