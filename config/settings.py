@@ -96,29 +96,29 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Local Data Base
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': env("POSTGRES_DB"),
-#         'HOST': 'localhost',
-#         'PORT': env("POSTGRES_PORT"),
-#         'USER': env('POSTGRES_USER'),
-#         'PASSWORD': env('POSTGRES_PASSWORD'),
-#     }
-# }
-
-
-# Docker Data Base
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': env("POSTGRES_DB"),
-        'HOST': env('POSTGRES_HOST'),
+        'HOST': 'localhost',
         'PORT': env("POSTGRES_PORT"),
         'USER': env('POSTGRES_USER'),
         'PASSWORD': env('POSTGRES_PASSWORD'),
     }
 }
+
+
+# Docker Data Base
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': env("POSTGRES_DB"),
+#         'HOST': env('POSTGRES_HOST'),
+#         'PORT': env("POSTGRES_PORT"),
+#         'USER': env('POSTGRES_USER'),
+#         'PASSWORD': env('POSTGRES_PASSWORD'),
+#     }
+# }
 
 
 # DATABASES = {
