@@ -4,6 +4,13 @@ from django.utils.text import slugify
 
 class Category(models.Model):
     category_name = models.CharField(max_length=255)
+    category_slug = models.SlugField(blank=True, unique=True)
+
+    def save(self, *args, **kwargs):
+        if not self.category_slug:
+            self.category_slug = slugify(self.category_name)
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return self.category_name
 # Create your models here.

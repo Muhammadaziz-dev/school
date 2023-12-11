@@ -6,8 +6,8 @@ from rest_framework.response import Response
 from comments.models import Comment
 from comments.serializers import CommentsDetailSerializer
 from rest_framework.pagination import PageNumberPagination
-from .models import Book
-from .serializers import BookSerializer, BookDetailSerializer
+from .models import Book, Category
+from .serializers import BookSerializer, BookDetailSerializer, BookCategorySerializer, BookCategoryDetailSerializer
 
 class BookPagination(PageNumberPagination):
     page_size = 20
@@ -34,3 +34,20 @@ class BookDetailAPIView(generics.RetrieveAPIView):
         data = serializer.data
         data['comments'] = comment_serializer.data
         return Response(data)
+
+
+class BookCategoryListAPIView(generics.ListAPIView):
+    queryset = Category.objects.all()
+    serializer_class = BookCategorySerializer
+    lookup_field = "category_slug"
+
+class BookCategoryDetailAPIView(generics.RetrieveAPIView):
+    queryset = Category.objects.all()
+    serializer_class = BookCategoryDetailSerializer
+    lookup_field = "category_slug"
+
+
+    # def retrieve(self, request, *args, **kwargs):
+    #     instance = self.get_object()
+    #     serializer = self.get_serializer(instance)
+    #     return Response(serializer.data)
