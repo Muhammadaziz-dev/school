@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .serializers import BlogDetailSerializer, BlogListSerializer
+from .serializers import BlogDetailSerializer, BlogListSerializer, AllBlogsSerializer
 from rest_framework import generics
 from .models import Blog
 from rest_framework.views import APIView
@@ -33,3 +33,6 @@ class BlogDetailAPIView(generics.RetrieveAPIView):
         return Response(data)
 
 
+class AllBlogAPIView(generics.ListAPIView):
+    queryset = Blog.objects.all()
+    serializer_class = AllBlogsSerializer

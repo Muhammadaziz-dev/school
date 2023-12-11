@@ -10,3 +10,9 @@ class BlogDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blog
         fields = "__all__"
+
+
+class AllBlogsSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = "__all__"
+        model = Blog

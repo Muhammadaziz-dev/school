@@ -95,17 +95,30 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 
 
+# # Local Local Data Base
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': "school29",
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#         'USER': 'postgres',
+#         'PASSWORD': "root",
+#     }
+# }
+
 # Local Data Base
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': "school29",
+        'NAME': env("POSTGRES_DB"),
         'HOST': 'localhost',
-        'PORT': '5432',
-        'USER': 'postgres',
-        'PASSWORD': "root",
+        'PORT': env("POSTGRES_PORT"),
+        'USER': env('POSTGRES_USER'),
+        'PASSWORD': env('POSTGRES_PASSWORD'),
     }
 }
+
 
 
 # Docker Data Base
@@ -121,6 +134,12 @@ DATABASES = {
 # }
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
