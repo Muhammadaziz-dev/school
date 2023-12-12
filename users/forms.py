@@ -3,9 +3,11 @@ from users.models import CustomUser
 
 
 class UserCreateForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
+
     class Meta:
         model = CustomUser
-        fields = ('username', 'first_name', 'last_name', 'email', 'password')
+        fields = ('username', 'first_name', 'last_name', 'email', 'password', 'phone_number')
 
     def save(self, commit=True):
         user = super().save(commit)
@@ -14,7 +16,8 @@ class UserCreateForm(forms.ModelForm):
 
         return user
 
+
 class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = CustomUser
-        fields = ('username', 'first_name', 'last_name', 'email', 'profile_picture')
+        fields = ('username', 'first_name', 'last_name', 'email', 'phone_number')
