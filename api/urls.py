@@ -5,7 +5,7 @@ from rest_framework.routers import DefaultRouter
 from users.api import ProfileUpdateViewSet, LoginAPIView, RegistrationAPIView, LogoutAPIView, UserList, \
     UserDetailAPIView, UserByTokenAPIView
 
-app_name = "api"
+
 
 
 
