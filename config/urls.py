@@ -9,6 +9,7 @@ schema_view = get_swagger_view(title='Your API')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include('api.urls')),
     path('library/', include('library.urls')),
     path("blogs/", include("blog.urls")),
     path("comments/", include("comments.urls")),

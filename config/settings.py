@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     # installed apps
     "django_ckeditor_5",
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
 ]
 
@@ -93,6 +94,17 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'config.wsgi.application'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
+
+AUTHENTICATION_CLASSES = (
+    'rest_framework.authentication.TokenAuthentication',
+)
 
 
 
