@@ -4,8 +4,9 @@ from django.urls import path
 from rest_framework.routers import DefaultRouter
 from users.api import ProfileUpdateViewSet, LoginAPIView, RegistrationAPIView, LogoutAPIView, UserList, \
     UserDetailAPIView, UserByTokenAPIView
+from library.views import SearchAPIView
 
-app_name = "api"
+
 
 
 
@@ -17,4 +18,5 @@ urlpatterns = [
     path('users/', UserList.as_view(), name='user-list'),
     path('users/<int:id>/', UserDetailAPIView.as_view(), name='user-detail'),
     path('users/<str:token>/', UserByTokenAPIView.as_view(), name='user-by-token'),
+    path('search/', SearchAPIView.as_view(), name='library-search-api'),
 ]

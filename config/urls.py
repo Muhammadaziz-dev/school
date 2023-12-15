@@ -11,6 +11,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include('api.urls')),
     path('library/', include('library.urls')),
+    path("api/", include("api.urls")),
     path("blogs/", include("blog.urls")),
     path("comments/", include("comments.urls")),
     path("ckeditor5/", include('django_ckeditor_5.urls'), name="ck_editor_5_upload_file"),

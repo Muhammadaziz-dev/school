@@ -7,5 +7,5 @@ urlpatterns = [
     path("categories/<slug:category_slug>/", BookCategoryDetailAPIView.as_view()),
     path("", BookListAPIView.as_view()),
     path("<slug:slug>/", BookDetailAPIView.as_view()),
-    path('search/', SearchAPIView.as_view(), name='library-search-api'),
+    
 ]

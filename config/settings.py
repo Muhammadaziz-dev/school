@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     # installed apps
     "django_ckeditor_5",
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
 ]
 
@@ -95,18 +96,29 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
+
+AUTHENTICATION_CLASSES = (
+    'rest_framework.authentication.TokenAuthentication',
+)
+
+
 
 # # Local Local Data Base
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': "school29",
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#         'USER': 'postgres',
-#         'PASSWORD': "root",
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': "school",
+        'HOST': 'localhost',
+        'PORT': '5432',
+        'USER': 'postgres',
+        'PASSWORD': "root",
+    }
+}
 
 # Local Data Base
 # DATABASES = {
@@ -120,17 +132,6 @@ WSGI_APPLICATION = 'config.wsgi.application'
 #     }
 # }
 
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'school29',
-        'HOST': 'Localhost',
-        'PORT': '5432',
-        'USER': 'postgres',
-        'PASSWORD': 'root'
-    }
-}
 
 
 
