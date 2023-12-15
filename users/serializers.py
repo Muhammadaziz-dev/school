@@ -1,32 +1,28 @@
 from rest_framework import serializers
 from rest_framework.views import APIView
-from orders.serializers import OrderSerializer
 
 from users.models import CustomUser
 from rest_framework.authtoken.models import Token
 
 
-
 class UserSerializer(serializers.ModelSerializer):
     token = serializers.CharField(source='auth_token.key', read_only=True)
-    orders = OrderSerializer(many=True, read_only=True)
 
     class Meta:
         model = CustomUser
-        fields = ('id', 'username', 'token', 'email', 'orders')
-
+        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'token', 'phone_number', 'profile_pic')
 
 
 class UserUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['username', 'email', 'profile_picture', 'first_name', 'last_name']
+        fields = ['username', 'email', 'profile_pic', 'phone_number']
 
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ('username', 'email', 'password', 'first_name', 'last_name')
+        fields = ('username', 'email', 'password', 'phone_number')
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
@@ -35,5 +31,5 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 
 
 class UserLoginSerializer(serializers.Serializer):
-    username = serializers.CharField(max_length=150, required=True)
+    phone_number = serializers.CharField(max_length=150, required=True)
     password = serializers.CharField(write_only=True, required=True)

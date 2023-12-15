@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'library',
     'blog',
     "comments",
+    "search",
     # installed apps
     "django_ckeditor_5",
     'rest_framework',
@@ -108,14 +109,26 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # }
 
 # Local Data Base
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': env("POSTGRES_DB"),
+#         'HOST': 'localhost',
+#         'PORT': env("POSTGRES_PORT"),
+#         'USER': env('POSTGRES_USER'),
+#         'PASSWORD': env('POSTGRES_PASSWORD'),
+#     }
+# }
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env("POSTGRES_DB"),
-        'HOST': 'localhost',
-        'PORT': env("POSTGRES_PORT"),
-        'USER': env('POSTGRES_USER'),
-        'PASSWORD': env('POSTGRES_PASSWORD'),
+        'NAME': 'school29',
+        'HOST': 'Localhost',
+        'PORT': '5432',
+        'USER': 'postgres',
+        'PASSWORD': 'root'
     }
 }
 
