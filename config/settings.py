@@ -109,16 +109,16 @@ AUTHENTICATION_CLASSES = (
 
 
 # # Local Local Data Base
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': "school29",
-        'HOST': 'localhost',
-        'PORT': '5432',
-        'USER': 'postgres',
-        'PASSWORD': "root",
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': "school29",
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#         'USER': 'postgres',
+#         'PASSWORD': "root",
+#     }
+# }
 
 # Local Data Base
 # DATABASES = {
@@ -136,7 +136,7 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'school',
+        'NAME': 'school29',
         'HOST': 'Localhost',
         'PORT': '5432',
         'USER': 'postgres',
