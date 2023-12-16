@@ -4,7 +4,7 @@ from django.urls import path
 from rest_framework.routers import DefaultRouter
 from users.api import ProfileUpdateViewSet, LoginAPIView, RegistrationAPIView, LogoutAPIView, UserList, \
     UserDetailAPIView, UserByTokenAPIView
-from library.views import SearchAPIView
+from library.api import SearchAPIView
 
 
 

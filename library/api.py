@@ -20,7 +20,7 @@ class SearchAPIView(ListAPIView):
     serializer_class = BookSerializer
     queryset = Book.objects.all()
     filter_backends = [filters.SearchFilter]
-    search_fields = ['name', 'id', 'slug', 'cover_image', 'category_slug', 'category_name']
+    search_fields = ['name']
 
 
     def get(self, request, *args, **kwargs):
