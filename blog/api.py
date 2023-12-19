@@ -1,13 +1,24 @@
 from django.shortcuts import render
 from .serializers import BlogDetailSerializer, BlogListSerializer, AllBlogsSerializer
-from rest_framework import generics
+from rest_framework import generics, filters
 from .models import Blog
-from rest_framework.views import APIView
-from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from comments.models import Comment
+from django import forms
 from comments.serializers import CommentsDetailSerializer
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.generics import ListAPIView
+
+
+class SearchForm(forms.Form):
+    query = forms.CharField(max_length=100)
+
+
+class SearchAPIView(ListAPIView):
+    serializer_class = BlogListSerializer
+    queryset = Blog.objects.all()
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['id', 'title', 'created_at']
 
 
 class BlogPagination(PageNumberPagination):

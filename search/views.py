@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Book
+from library.models import Book
 from .forms import SearchForm
 
 def search_view(request):

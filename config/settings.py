@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'blog',
     "comments",
     "search",
+    "exam",
     # installed apps
     "django_ckeditor_5",
     'rest_framework',
@@ -112,7 +113,7 @@ AUTHENTICATION_CLASSES = (
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': "school",
+        'NAME': "school29",
         'HOST': 'localhost',
         'PORT': '5432',
         'USER': 'postgres',
