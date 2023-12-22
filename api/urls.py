@@ -23,5 +23,4 @@ urlpatterns = [
 
     # online examples bsb chsb
     path("grade/", GradeAPIView.as_view()),
-
 ]

@@ -15,21 +15,11 @@ class CHSBSerializers(serializers.ModelSerializer):
 
 
 class SubjectSerializer(serializers.ModelSerializer):
-    bsb = BSBSerializers(many=True, read_only=True)
-    chsb = CHSBSerializers(many=True, read_only=True)
     class Meta:
         model = Subject
-        fields = ("id", "subject_name" "bsb", "chsb")
+        fields = ("id", "subject_name" )
 
-    # def get_bsb(self, obj):
-    #     bsb_data = []
-    #     bsbes = BSB.objects.all()
-    #     for bsb in bsbes:
-    #         bsb_data = {
-    #             bsb.bsb_name:{
-    #
-    #             }
-    #         }
+
 class GradeSerializers(serializers.ModelSerializer):
     subjects = serializers.SerializerMethodField()
 
@@ -37,15 +27,18 @@ class GradeSerializers(serializers.ModelSerializer):
         fields = ("id", 'grade_num', "subjects")
         model = Grade
     def get_subjects(self, obj):
-        subjects_data = [] # bo'sh list yaratiladi
-        subjects = Subject.objects.all() # subjects degan o'zgaruvchiga barcha subjectlar kiritiladi
-        for subject in subjects: # for sikli orqali fanlar ichidagi har bir fan uchun bsb chsblar tanlanadi
-            subject_data = { # subject data listiga yangi qiymat kiritiladi har bir fani uchu
-                subject.subject_name: {
-                    "BSB": BSBSerializers(BSB.objects.filter(grade_number=obj, subject=subject), many=True).data,
-                    "CHSB": CHSBSerializers(CHSB.objects.filter(grade_number=obj, subject=subject), many=True).data,
-                }
+        subjects_data = []
+        subjects = Subject.objects.all()
+        for subject in subjects:
+            bsb_data = BSBSerializers(BSB.objects.filter(grade_number=obj, subject=subject), many=True).data
+            chsb_data = CHSBSerializers(CHSB.objects.filter(grade_number=obj, subject=subject), many=True).data
+            subject_data = {
+                "id": subject.id,
+                "subject_name": subject.subject_name,
+                "BSB": bsb_data,
+                "CHSB": chsb_data,
             }
             subjects_data.append(subject_data)
         return subjects_data
+
 
