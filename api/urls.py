@@ -5,7 +5,6 @@ from rest_framework.routers import DefaultRouter
 from users.api import ProfileUpdateViewSet, LoginAPIView, RegistrationAPIView, LogoutAPIView, UserList, \
     UserDetailAPIView, UserByTokenAPIView
 from library.api import SearchAPIView
-from exam.api import GradeAPIView
 
 
 
@@ -21,6 +20,5 @@ urlpatterns = [
     path('users/<str:token>/', UserByTokenAPIView.as_view(), name='user-by-token'),
     path('search/', SearchAPIView.as_view(), name='library-search-api'),
 
-    # online examples bsb chsb
-    path("grade/", GradeAPIView.as_view()),
+
 ]
